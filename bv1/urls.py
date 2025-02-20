@@ -13,6 +13,6 @@ urlpatterns = [
     path('team/', TeamView.as_view(), name = 'team_url'), 
     path('testimonial/', TestimonialView.as_view(), name = 'testimonial_url'),
     path('contact/', ContactView.as_view(), name = 'contact_url'),
-    path('succes/', SuccesView.as_view(), name = 'succes')  
+    path('succes/', SuccesView.as_view(), name = 'success')  
   
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
