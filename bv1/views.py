@@ -36,6 +36,13 @@ class SuccesView(TemplateView):
     template_name = 'bv1/succes.html'
 
 
+class ContactView(View):
+    template_name = 'bv1/contact.html'
+
+    def get(self, request):
+        form = ContactForm()
+        return render(request, self.template_name, {'form': form})
+
     def post(self, request):
         form = ContactForm(request.POST)
 
