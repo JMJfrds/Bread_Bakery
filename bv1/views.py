@@ -36,25 +36,14 @@ class SuccesView(TemplateView):
     template_name = 'bv1/succes.html'
 
 
-class ContactView(View):
-    template_name = 'bv1/contact.html'
-
-    def get(self, request):
-        form = ContactForm()
-        return render(request, 'bv1/contact.html', {'form': form})
-    
     def post(self, request):
         form = ContactForm(request.POST)
-        
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            phone = form.cleaned_data['phone']
-            message = form.cleaned_data['message']
 
-            print(f"Form is valid: Name: {name}, Email: {email}, Phone: {phone}, Message: {message}")
-            return redirect("succes")
+        if form.is_valid():
+            contact = form.save()
+            print(f"Form is valid: {contact}")
+            return redirect("success")
         else:
             print("Form is not valid")
             print(form.errors)
-            return render(request, 'bv1/contact.html', {'form': form})
+            return render(request, self.template_name, {'form': form})
